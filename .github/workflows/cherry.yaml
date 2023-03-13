@@ -36,6 +36,11 @@ jobs:
         uses: fortify/gha-setup-fod-uploader@v1.0.1
         with:
           version: 1.0.1
+          release-id: '202827'
+          scan-type: 'DAST'
+          tenant-id: 'Accenture_299277767_FMA_100081812'
+          api-based-url: 'https://api.trial.fortify.com'
+          personal-access-token: 'WHg9S25xb210OzNmbEk2M2txS3p1STJXWEZnNFlg0'
             
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
