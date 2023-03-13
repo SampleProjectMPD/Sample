@@ -31,22 +31,6 @@ jobs:
       - name: Generate dotnet-coverage report
         run: dotnet-coverage collect 'dotnet test' -f xml  -o 'coverage.xml'
       
-      - name: Install dotnet sonarscanner
-        run: dotnet tool install --global dotnet-sonarscanner --version 5.7.2
-        
-      - name: Analyze with SonarCloud  
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}  # Needed to get PR information
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Generate a token on Sonarcloud.io, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
-        with:
-          # Additional arguments for the sonarcloud scanner
-          args:             
-            # Unique keys of your project and organization. You can find them in SonarCloud > Information (bottom-left menu)
-            # mandatory
-            -Dsonar.projectKey=SampleProjectMPD_Sample
-            -Dsonar.organization=sampleprojectmpd
-            -Dsonar.cs.vscoveragexml.reportsPaths=coverage.xml
             
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
