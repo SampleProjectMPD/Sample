@@ -30,17 +30,6 @@ jobs:
       
       - name: Generate dotnet-coverage report
         run: dotnet-coverage collect 'dotnet test' -f xml  -o 'coverage.xml'
-          
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
-        with:
-          languages: ${{ matrix.language }}
-          
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v2
-        
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2
       
       - name: Install dotnet sonarscanner
         run: dotnet tool install --global dotnet-sonarscanner --version 5.7.2
